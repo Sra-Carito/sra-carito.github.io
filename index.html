@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sra. Carito · Coctelería y Repostería</title>
+<meta name="description" content="Sra. Carito: coctelería, pasteles, tortas, pies, kuchenes y repostería casera por encargo. Pide por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rosa:#e8798f;
+    --rosa-osc:#c95870;
+    --crema:#fff8f1;
+    --crema-2:#fdeee3;
+    --cafe:#5a3a2e;
+    --cafe-suave:#8a6a5c;
+    --dorado:#d9a75a;
+    --verde-wsp:#25d366;
+    --sombra:0 10px 30px rgba(90,58,46,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Poppins',sans-serif;background:var(--crema);color:var(--cafe);line-height:1.6}
+  h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2}
+  a{color:inherit;text-decoration:none}
+  .contenedor{max-width:1100px;margin:0 auto;padding:0 20px}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,248,241,.92);backdrop-filter:blur(8px);border-bottom:1px solid #f1dfd2}
+  nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--rosa-osc)}
+  .logo span{font-style:italic;color:var(--dorado)}
+  .menu{display:flex;gap:26px;list-style:none;font-weight:500;font-size:.95rem}
+  .menu a:hover{color:var(--rosa-osc)}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:50px;font-weight:600;border:none;cursor:pointer;font-family:inherit;font-size:1rem;transition:transform .2s, box-shadow .2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:var(--sombra)}
+  .btn-rosa{background:var(--rosa);color:#fff}
+  .btn-wsp{background:var(--verde-wsp);color:#fff}
+  .btn-borde{border:2px solid var(--rosa);color:var(--rosa-osc);background:transparent}
+  .hamburguesa{display:none;background:none;border:none;font-size:1.8rem;color:var(--cafe);cursor:pointer}
+
+  /* HERO */
+  .hero{padding:80px 0 70px;background:
+      radial-gradient(circle at 85% 20%, #ffd9e0 0, transparent 40%),
+      radial-gradient(circle at 10% 90%, #fbe3c4 0, transparent 40%);}
+  .hero .contenedor{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  .etiqueta{display:inline-block;background:#fff;color:var(--rosa-osc);padding:6px 16px;border-radius:50px;font-size:.85rem;font-weight:500;box-shadow:var(--sombra);margin-bottom:18px}
+  .hero h1{font-size:clamp(2.4rem,5vw,3.6rem);margin-bottom:18px}
+  .hero h1 em{color:var(--rosa-osc)}
+  .hero p{font-size:1.1rem;color:var(--cafe-suave);margin-bottom:28px;max-width:500px}
+  .hero-botones{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-arte{position:relative;aspect-ratio:1;max-width:420px;margin:0 auto;width:100%}
+  .circulo{position:absolute;inset:0;border-radius:50%;background:linear-gradient(145deg,#ffc2cf,#f9a8b8);box-shadow:var(--sombra)}
+  .hero-arte .emoji-grande{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:clamp(7rem,18vw,10rem)}
+  .flotante{position:absolute;background:#fff;border-radius:18px;padding:10px 14px;box-shadow:var(--sombra);font-size:2rem;animation:flotar 4s ease-in-out infinite}
+  .f1{top:4%;left:-4%}.f2{bottom:8%;left:2%;animation-delay:1s}.f3{top:12%;right:-2%;animation-delay:2s}.f4{bottom:2%;right:6%;animation-delay:.5s}
+  @keyframes flotar{50%{transform:translateY(-12px)}}
+
+  /* SECCIONES */
+  section{padding:80px 0}
+  .titulo-seccion{text-align:center;margin-bottom:50px}
+  .titulo-seccion small{color:var(--rosa-osc);font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:.8rem}
+  .titulo-seccion h2{font-size:clamp(2rem,4vw,2.6rem);margin-top:8px}
+  .titulo-seccion p{color:var(--cafe-suave);max-width:560px;margin:12px auto 0}
+
+  /* PRODUCTOS */
+  .grid-productos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+  .tarjeta{background:#fff;border-radius:24px;overflow:hidden;box-shadow:var(--sombra);transition:transform .25s;display:flex;flex-direction:column}
+  .tarjeta:hover{transform:translateY(-6px)}
+  .tarjeta .img{height:150px;display:flex;align-items:center;justify-content:center;font-size:4.5rem}
+  .c1 .img{background:linear-gradient(135deg,#ffe1e8,#ffc6d3)}
+  .c2 .img{background:linear-gradient(135deg,#fdebd3,#f7d2a6)}
+  .c3 .img{background:linear-gradient(135deg,#e9f3e1,#cfe6bf)}
+  .c4 .img{background:linear-gradient(135deg,#ece3f7,#d6c5f0)}
+  .c5 .img{background:linear-gradient(135deg,#fff3c9,#fbe08d)}
+  .c6 .img{background:linear-gradient(135deg,#dff1f5,#bfe2ea)}
+  .tarjeta .cuerpo{padding:22px;flex:1;display:flex;flex-direction:column}
+  .tarjeta h3{font-size:1.35rem;margin-bottom:8px}
+  .tarjeta p{color:var(--cafe-suave);font-size:.93rem;margin-bottom:14px}
+  .tarjeta ul{list-style:none;font-size:.9rem;margin-bottom:18px}
+  .tarjeta li::before{content:"✿ ";color:var(--rosa)}
+  .tarjeta .pedir{margin-top:auto;align-self:flex-start;color:var(--rosa-osc);font-weight:600;font-size:.95rem;background:none;border:none;cursor:pointer;font-family:inherit;padding:0}
+  .tarjeta .pedir:hover{text-decoration:underline}
+
+  /* NOSOTROS */
+  .nosotros{background:var(--crema-2)}
+  .nosotros .contenedor{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .nosotros-arte{background:#fff;border-radius:30px;padding:40px;box-shadow:var(--sombra);text-align:center}
+  .nosotros-arte .emoji{font-size:6rem}
+  .nosotros-arte h3{font-size:1.8rem;color:var(--rosa-osc);margin-top:10px}
+  .nosotros h2{font-size:clamp(2rem,4vw,2.5rem);margin-bottom:18px}
+  .nosotros p{color:var(--cafe-suave);margin-bottom:14px}
+  .valores{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:22px}
+  .valor{background:#fff;border-radius:16px;padding:14px;font-size:.92rem;font-weight:500}
+  .valor span{font-size:1.4rem;margin-right:6px}
+
+  /* PASOS */
+  .pasos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;counter-reset:paso}
+  .paso{text-align:center;padding:28px 20px;background:#fff;border-radius:24px;box-shadow:var(--sombra);position:relative}
+  .paso .num{width:52px;height:52px;border-radius:50%;background:var(--rosa);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin:0 auto 14px}
+  .paso h3{font-size:1.15rem;margin-bottom:6px}
+  .paso p{color:var(--cafe-suave);font-size:.9rem}
+
+  /* FORMULARIO */
+  .pedido{background:linear-gradient(135deg,#f9a8b8,#e8798f)}
+  .pedido .titulo-seccion h2,.pedido .titulo-seccion p,.pedido .titulo-seccion small{color:#fff}
+  .formulario{background:#fff;border-radius:28px;padding:36px;max-width:680px;margin:0 auto;box-shadow:0 20px 50px rgba(0,0,0,.15)}
+  .fila{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .campo{margin-bottom:16px}
+  .campo label{display:block;font-weight:500;font-size:.9rem;margin-bottom:6px}
+  .campo input,.campo select,.campo textarea{width:100%;padding:12px 14px;border:2px solid #f1dfd2;border-radius:14px;font-family:inherit;font-size:.95rem;color:var(--cafe);background:var(--crema);transition:border-color .2s}
+  .campo input:focus,.campo select:focus,.campo textarea:focus{outline:none;border-color:var(--rosa)}
+  .campo textarea{resize:vertical;min-height:110px}
+  .formulario .btn{width:100%;justify-content:center;font-size:1.05rem;padding:15px}
+  .nota{text-align:center;font-size:.82rem;color:var(--cafe-suave);margin-top:12px}
+
+  /* FOOTER */
+  footer{background:var(--cafe);color:#f3e3d8;padding:50px 0 24px}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px;margin-bottom:30px}
+  footer .logo{color:#ffc2cf}
+  footer p,footer li{font-size:.92rem;opacity:.85}
+  footer h4{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:12px;color:#fff}
+  footer ul{list-style:none}
+  footer li{margin-bottom:6px}
+  footer a:hover{color:#ffc2cf}
+  .copy{text-align:center;border-top:1px solid rgba(255,255,255,.12);padding-top:20px;font-size:.82rem;opacity:.7}
+
+  /* WSP FLOTANTE */
+  .wsp-flotante{position:fixed;bottom:22px;right:22px;width:62px;height:62px;border-radius:50%;background:var(--verde-wsp);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(37,211,102,.45);z-index:60;animation:latido 2.5s infinite}
+  .wsp-flotante svg{width:34px;height:34px;fill:#fff}
+  @keyframes latido{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}50%{box-shadow:0 0 0 14px rgba(37,211,102,0)}}
+
+  /* RESPONSIVE */
+  @media(max-width:860px){
+    .hero .contenedor,.nosotros .contenedor{grid-template-columns:1fr}
+    .hero{padding-top:50px;text-align:center}
+    .hero p{margin-left:auto;margin-right:auto}
+    .hero-botones{justify-content:center}
+    .hero-arte{max-width:300px}
+    .footer-grid{grid-template-columns:1fr}
+    .menu{display:none;position:absolute;top:68px;left:0;right:0;background:var(--crema);flex-direction:column;padding:20px;gap:16px;border-bottom:1px solid #f1dfd2}
+    .menu.abierto{display:flex}
+    .hamburguesa{display:block}
+    nav .btn-rosa{display:none}
+  }
+  @media(max-width:560px){
+    .fila{grid-template-columns:1fr}
+    .formulario{padding:24px}
+    .valores{grid-template-columns:1fr}
+    section{padding:60px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="contenedor">
+    <a href="#" class="logo">Sra. <span>Carito</span></a>
+    <ul class="menu" id="menu">
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#como-pedir">Cómo pedir</a></li>
+      <li><a href="#pedido">Hacer pedido</a></li>
+    </ul>
+    <a href="#pedido" class="btn btn-rosa">Pedir ahora</a>
+    <button class="hamburguesa" id="hamburguesa" aria-label="Abrir menú">☰</button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="contenedor">
+    <div>
+      <span class="etiqueta">🍰 Hecho en casa, con cariño</span>
+      <h1>Coctelería y repostería de <em>Sra. Carito</em></h1>
+      <p>Tortas, pasteles, pies, kuchenes y coctelería dulce y salada para cumpleaños, matrimonios, bautizos, reuniones y cualquier excusa para celebrar.</p>
+      <div class="hero-botones">
+        <a href="#pedido" class="btn btn-rosa">Hacer mi pedido</a>
+        <a href="#productos" class="btn btn-borde">Ver productos</a>
+      </div>
+    </div>
+    <div class="hero-arte" aria-hidden="true">
+      <div class="circulo"></div>
+      <div class="emoji-grande">🎂</div>
+      <div class="flotante f1">🧁</div>
+      <div class="flotante f2">🥧</div>
+      <div class="flotante f3">🍪</div>
+      <div class="flotante f4">🥐</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section id="productos">
+  <div class="contenedor">
+    <div class="titulo-seccion">
+      <small>Nuestra carta</small>
+      <h2>Todo lo dulce (y lo salado)</h2>
+      <p>Cada producto se prepara por encargo. Toca "Pedir" y te llevamos directo al formulario.</p>
+    </div>
+    <div class="grid-productos">
+      <div class="tarjeta c1">
+        <div class="img">🎂</div>
+        <div class="cuerpo">
+          <h3>Tortas y pasteles</h3>
+          <p>Tortas de celebración personalizadas, del tamaño que necesites.</p>
+          <ul><li>Tres leches</li><li>Selva negra</li><li>Mil hojas manjar</li><li>Tortas temáticas</li></ul>
+          <button class="pedir" data-producto="Tortas y pasteles">Pedir →</button>
+        </div>
+      </div>
+      <div class="tarjeta c2">
+        <div class="img">🥧</div>
+        <div class="cuerpo">
+          <h3>Pies y kuchenes</h3>
+          <p>Recetas de toda la vida, con masa casera y fruta fresca.</p>
+          <ul><li>Pie de limón</li><li>Kuchen de manzana</li><li>Kuchen de frambuesa</li><li>Cheesecake</li></ul>
+          <button class="pedir" data-producto="Pies y kuchenes">Pedir →</button>
+        </div>
+      </div>
+      <div class="tarjeta c3">
+        <div class="img">🥪</div>
+        <div class="cuerpo">
+          <h3>Coctelería salada</h3>
+          <p>Bocados para eventos, por unidad o en bandejas.</p>
+          <ul><li>Empanaditas de cóctel</li><li>Canapés y brochetas</li><li>Sándwiches de miga</li><li>Mini quiches</li></ul>
+          <button class="pedir" data-producto="Coctelería salada">Pedir →</button>
+        </div>
+      </div>
+      <div class="tarjeta c4">
+        <div class="img">🧁</div>
+        <div class="cuerpo">
+          <h3>Coctelería dulce</h3>
+          <p>Dulces finos para mesas de postres y celebraciones.</p>
+          <ul><li>Cupcakes</li><li>Alfajores</li><li>Mini pie de limón</li><li>Dulces chilenos</li></ul>
+          <button class="pedir" data-producto="Coctelería dulce">Pedir →</button>
+        </div>
+      </div>
+      <div class="tarjeta c5">
+        <div class="img">🍪</div>
+        <div class="cuerpo">
+          <h3>Galletas y queques</h3>
+          <p>Para la once, regalos o para acompañar un cafecito.</p>
+          <ul><li>Queque marmolado</li><li>Galletas decoradas</li><li>Brownies</li><li>Budín</li></ul>
+          <button class="pedir" data-producto="Galletas y queques">Pedir →</button>
+        </div>
+      </div>
+      <div class="tarjeta c6">
+        <div class="img">🎉</div>
+        <div class="cuerpo">
+          <h3>Eventos completos</h3>
+          <p>Armamos el menú dulce y salado para tu evento.</p>
+          <ul><li>Cumpleaños</li><li>Matrimonios</li><li>Bautizos y comuniones</li><li>Eventos de empresa</li></ul>
+          <button class="pedir" data-producto="Evento completo">Cotizar →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros" class="nosotros">
+  <div class="contenedor">
+    <div class="nosotros-arte">
+      <div class="emoji">👩‍🍳</div>
+      <h3>Sra. Carito</h3>
+      <p>Repostera y cocinera de corazón</p>
+    </div>
+    <div>
+      <h2>Sabor de casa en cada bocado</h2>
+      <p>En Sra. Carito preparamos cada pedido a mano, con ingredientes frescos y las recetas de siempre. Desde una torta para la familia hasta la coctelería completa de tu evento.</p>
+      <p>Nos encanta ser parte de tus celebraciones, por eso cuidamos cada detalle: el sabor, la presentación y la puntualidad.</p>
+      <div class="valores">
+        <div class="valor"><span>🥚</span>Ingredientes frescos</div>
+        <div class="valor"><span>🤲</span>Hecho a mano</div>
+        <div class="valor"><span>🎨</span>Diseños a pedido</div>
+        <div class="valor"><span>⏰</span>Entregas puntuales</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO PEDIR -->
+<section id="como-pedir">
+  <div class="contenedor">
+    <div class="titulo-seccion">
+      <small>Fácil y rápido</small>
+      <h2>¿Cómo hago mi pedido?</h2>
+    </div>
+    <div class="pasos">
+      <div class="paso"><div class="num">1</div><h3>Elige</h3><p>Mira los productos y decide qué quieres para tu ocasión.</p></div>
+      <div class="paso"><div class="num">2</div><h3>Escríbenos</h3><p>Completa el formulario y se abrirá WhatsApp con tu mensaje listo.</p></div>
+      <div class="paso"><div class="num">3</div><h3>Confirmamos</h3><p>Te respondemos con precio, disponibilidad y forma de pago.</p></div>
+      <div class="paso"><div class="num">4</div><h3>¡A disfrutar!</h3><p>Retira o recibe tu pedido el día acordado.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULARIO -->
+<section id="pedido" class="pedido">
+  <div class="contenedor">
+    <div class="titulo-seccion">
+      <small>Haz tu pedido</small>
+      <h2>Escríbenos por WhatsApp</h2>
+      <p>Llena los datos y te llevamos directo a WhatsApp con el mensaje ya escrito.</p>
+    </div>
+    <form class="formulario" id="formPedido">
+      <div class="fila">
+        <div class="campo">
+          <label for="nombre">Tu nombre *</label>
+          <input type="text" id="nombre" required placeholder="Ej: María González">
+        </div>
+        <div class="campo">
+          <label for="producto">¿Qué necesitas? *</label>
+          <select id="producto" required>
+            <option value="">Selecciona...</option>
+            <option>Tortas y pasteles</option>
+            <option>Pies y kuchenes</option>
+            <option>Coctelería salada</option>
+            <option>Coctelería dulce</option>
+            <option>Galletas y queques</option>
+            <option>Evento completo</option>
+            <option>Otro</option>
+          </select>
+        </div>
+      </div>
+      <div class="fila">
+        <div class="campo">
+          <label for="fecha">Fecha que lo necesitas</label>
+          <input type="date" id="fecha">
+        </div>
+        <div class="campo">
+          <label for="cantidad">Personas / cantidad</label>
+          <input type="text" id="cantidad" placeholder="Ej: 20 personas">
+        </div>
+      </div>
+      <div class="campo">
+        <label for="mensaje">Detalles de tu pedido</label>
+        <textarea id="mensaje" placeholder="Sabor, decoración, si es retiro o despacho, etc."></textarea>
+      </div>
+      <button type="submit" class="btn btn-wsp">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4M12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9 1.8 1.8 2.9 4.3 2.9 6.9 0 5.4-4.4 9.8-9.8 9.8M20.5 3.5C18.2 1.2 15.2 0 12 0 5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.8 1 3.8 1.5 5.8 1.5 6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.5-8.4"/></svg>
+        Enviar pedido por WhatsApp
+      </button>
+      <p class="nota">Te responderemos lo antes posible para confirmar precio y disponibilidad.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="contenedor">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:10px">Sra. <span>Carito</span></div>
+        <p>Coctelería y repostería casera por encargo. Endulzamos tus celebraciones desde la cocina de casa.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#pedido">Hacer pedido</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="#" class="link-wsp">💬 WhatsApp</a></li>
+          <li>📍 Concepción, Chile</li>
+          <li>🕒 Pedidos con anticipación</li>
+        </ul>
+      </div>
+    </div>
+    <p class="copy">© <span id="anio"></span> Sra. Carito · Coctelería y Repostería</p>
+  </div>
+</footer>
+
+<!-- BOTÓN FLOTANTE WHATSAPP -->
+<a href="#" class="wsp-flotante link-wsp" aria-label="Escribir por WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4M12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9 1.8 1.8 2.9 4.3 2.9 6.9 0 5.4-4.4 9.8-9.8 9.8M20.5 3.5C18.2 1.2 15.2 0 12 0 5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.8 1 3.8 1.5 5.8 1.5 6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.5-8.4"/></svg>
+</a>
+
+<script>
+  // ============================================
+  //  CAMBIA AQUÍ EL NÚMERO DE WHATSAPP
+  //  Formato: código país + número, sin "+", espacios ni guiones
+  //  Ejemplo Chile: 56912345678
+  // ============================================
+  const NUMERO_WSP = "56933898518";
+
+  const saludo = "¡Hola Sra. Carito! 👋 Quiero hacer una consulta.";
+  const urlWsp = (texto) => `https://wa.me/${NUMERO_WSP}?text=${encodeURIComponent(texto)}`;
+
+  // Enlaces directos (botón flotante y footer)
+  document.querySelectorAll(".link-wsp").forEach(a => {
+    a.href = urlWsp(saludo);
+    a.target = "_blank";
+    a.rel = "noopener";
+  });
+
+  // Botones "Pedir" de cada producto -> rellenan el formulario
+  document.querySelectorAll(".pedir").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const sel = document.getElementById("producto");
+      sel.value = btn.dataset.producto;
+      document.getElementById("pedido").scrollIntoView({behavior:"smooth"});
+      setTimeout(() => document.getElementById("nombre").focus(), 600);
+    });
+  });
+
+  // Formulario -> mensaje armado a WhatsApp
+  document.getElementById("formPedido").addEventListener("submit", e => {
+    e.preventDefault();
+    const v = id => document.getElementById(id).value.trim();
+    let fecha = v("fecha");
+    if (fecha) {
+      const [a, m, d] = fecha.split("-");
+      fecha = `${d}/${m}/${a}`;
+    }
+    let texto = `¡Hola Sra. Carito! 🍰 Quiero hacer un pedido:\n\n`;
+    texto += `👤 Nombre: ${v("nombre")}\n`;
+    texto += `🧁 Producto: ${v("producto")}\n`;
+    if (fecha) texto += `📅 Fecha: ${fecha}\n`;
+    if (v("cantidad")) texto += `👥 Cantidad: ${v("cantidad")}\n`;
+    if (v("mensaje")) texto += `📝 Detalles: ${v("mensaje")}\n`;
+    window.open(urlWsp(texto), "_blank");
+  });
+
+  // Menú móvil
+  const menu = document.getElementById("menu");
+  document.getElementById("hamburguesa").addEventListener("click", () => menu.classList.toggle("abierto"));
+  menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => menu.classList.remove("abierto")));
+
+  // Fecha mínima = hoy y año del footer
+  document.getElementById("fecha").min = new Date().toISOString().split("T")[0];
+  document.getElementById("anio").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
